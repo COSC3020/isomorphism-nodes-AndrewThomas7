@@ -12,3 +12,6 @@ one-to-one and onto function (bijection) $f: V_1 \rightarrow V_2$ such that $(u,
 
 
 <img title="a title" alt="Alt text" src="image_2025-05-04_140710293.png">
+
+
+<img title="a title" alt="Alt text" src="image_2025-05-04_140741210.png">
