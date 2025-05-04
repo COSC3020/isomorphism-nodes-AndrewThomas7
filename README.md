@@ -15,6 +15,9 @@ of any Large Language Models. All of the work is my own, except where stated
 otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is
 suspected, charges may be filed against me without prior notice.”-Andrew Thomas
 
+Sources
+#1-https://www.youtube.com/watch?v=EwV4Puk2coU-Used this to learn about graph isomorpism and used the map notation introduced in this video
+
 
 <img title="a title" alt="Alt text" src="image_2025-05-04_140710293.png">
 
