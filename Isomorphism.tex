@@ -1,0 +1,136 @@
+%This is a Tex Version of Math 304 Homework Template
+%
+\documentclass{amsart}
+\setlength{\textheight}{9in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}    
+\usepackage{parskip}
+\usepackage{amsmath, amssymb}% needed to include these graphics
+%\graphicspath{{./Pictures/}}      % only in case you want to keep the pictures in a separate
+                                  % subdirectory; also see the appropriate line below
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\newcounter{temp}
+\theoremstyle{definition}
+\newtheorem{Thm}{Theorem}
+\newtheorem{Prob}{Problem}
+\newtheorem*{Def}{Definition}
+\newtheorem*{Ans}{Answer}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\dlim}{\dis\lim}
+\newcommand{\dsum}{\dis\sum}
+\newcommand{\dint}{\dis\int}
+\newcommand{\ddint}{\dint\!\!\dint}
+\newcommand{\dddint}{\dint\!\!\dint\!\!\dint}
+\newcommand{\dt}{\text{d}t}
+\newcommand{\dA}{\text{d}A}
+\newcommand{\dV}{\text{d}V}
+\newcommand{\dx}{\text{d}x}
+\newcommand{\dy}{\text{d}y}
+\newcommand{\dz}{\text{d}z}
+\newcommand{\dw}{\text{d}w}
+\newcommand{\du}{\text{d}u}
+\newcommand{\dv}{\text{d}v}
+\newcommand{\ds}{\text{d}s}
+\newcommand{\dr}{\text{d}r}
+\newcommand{\dth}{\text{d}\theta}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\dd}[2]{\dfrac{\text{d}#1}{\text{d}#2}}
+\newcommand{\dydx}{\dfrac{\text{d}y}{\text{d}x}}
+\renewcommand{\labelenumi}{{\normalfont \arabic{enumi}.}}
+\renewcommand{\labelenumii}{{\normalfont \alph{enumii}.}}
+\renewcommand{\labelenumiii}{{\normalfont \roman{enumiii}.}}
+\font \bggbf cmbx18 scaled \magstep2
+\font \bgbf cmbx10 scaled \magstep2
+\begin{document}
+\begin{center}
+	{\bgbf COSC 3020\\ \smallskip
+	Algorithms\\ \smallskip
+	Spring 2025\\ \smallskip
+	Isomorphism-Nodes\\ \smallskip
+        Andrew Thomas}
+\end{center}
+\smallskip
+
+\begin{enumerate}
+	\item Prove that if two graphs 
+A
+ and 
+B
+ do not have the same number of nodes, they cannot be isomorphic.
+
+\section*{Answer}
+
+\subsection*{Proof}
+
+Assume for the sake of contradiction that two graphs 
+\[ A=(V_1,E_1), \quad B=(V_2,E_2) \]
+are isomorphic, such that there exists some function 
+\[
+\phi: V_1 \longrightarrow V_2
+\]
+that is one-to-one and onto, and 
+\[
+(u,v) \in E_1 \iff (\phi(u), \phi(v)) \in E_2,
+\]
+and that \(|V_1| \ne |V_2|\).
+
+\subsubsection*{Case 1: \(|V_1| > |V_2|\)}
+
+We now construct the following map:
+\[
+\phi:
+\begin{pmatrix}
+v_{1,1} & v_{1,2} & \cdots & v_{1,k} & \cdots & v_{1,n} \\
+v_{2,1} & v_{2,2} & \cdots & v_{2,k}
+\end{pmatrix}
+\]
+where \(n, k \in \mathbb{N},\ n > k\), and \(v_{1,i} \in V_1\), \(v_{2,i} \in V_2\).
+
+We now use the definition of an injective (one-to-one) function to derive a contradiction.
+
+\textbf{Definition:} A function \(\phi: V_1 \rightarrow V_2\) is said to be injective if for all \(v_1, v_2 \in V_1\),
+\[
+\phi(v_1) = \phi(v_2) \Rightarrow v_1 = v_2.
+\]
+
+To show that this doesn't work in this case, we want to find \(v_1 \ne v_2\) such that \(\phi(v_1) = \phi(v_2)\).\par
+
+Take $v_{1,k'},v_{1,k'+1}\in V_1$ such that $k<k'<n$. Now note that both  $v_{1,k'},v_{1,k'+1}$ are different vertices so $v_{1,k'}\neq v_{1,k'+1}$ however when we map them it must be the case that we have $\phi(v_{1,k'})=\phi(v_{1,k'+1})$ for some $v_{1,k'},v_{1,k'+1}\in V_1$ since $k<k'$ and elements in $V_2$ only index up to $k$.
+
+In lamens terms this must be the case because there are more nodes in $V_1$ than there are in $V_2$, meaning at some point in the mapping more than one node from $V_1$ will get mapped to the same element in $V_2$.\par
+This is a contradiction because we assumed the map was bijective.
+\subsubsection*{Case 2: \(|V_1| < |V_2|\)}
+
+We now construct the following mapping:
+\[
+\phi:
+\begin{pmatrix}
+v_{1,1} & v_{1,2} & \cdots & v_{1,k} & & & \\
+v_{2,1} & v_{2,2} & \cdots & v_{2,k} & \cdots & v_{2,n}
+\end{pmatrix}
+\]
+
+\textbf{Definition:} A function \(\phi: V_1 \rightarrow V_2\) is not surjective if there exists some \(u \in V_2\) such that for all \(v \in V_1\), \(\phi(v) \ne u\).
+
+Choose $u=v_{2,k'}$ where $k'\in \mathbb{N}$ and $k<k'<n$ then because $k'>k$ $\forall$ $v_{1,k}\in V_1$ it must be the case that $\phi(v_{1,k})\neq v_{2,k'}$
+
+In other words because there are more noddes in $V_2$ than $V_1$ there are simply some values you cannot map to at all. Thus we can see that this mapping cannot meet the criteria for a surjective function..
+
+\bigskip
+
+\noindent
+\textbf{Conclusion:} Therefore it cannot be the case that $A\cong B$  if \(|V_1| \ne |V_2|\).
+\end{enumerate}
+\end{document}
